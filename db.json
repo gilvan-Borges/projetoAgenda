@@ -1,0 +1,16 @@
+{
+  "usuarios": [
+    {
+      "id": "eac2",
+      "nome": "GILVAN BORGES DOS SANTOS",
+      "email": "gilvan.borges@gmail.com",
+      "senha": "@Admin123"
+    },
+    {
+      "id": "32db",
+      "nome": "ana maria",
+      "email": "asdsa@gmail.com",
+      "senha": "123456"
+    }
+  ]
+}
