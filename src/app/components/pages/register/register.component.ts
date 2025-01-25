@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { UsuarioService } from '../../../services/usuario.service';
+import { RegisterRequestDto } from '../../../models/register.request.dto';
 
 
 @Component({
@@ -16,6 +18,8 @@ import { RouterLink } from '@angular/router';
 })
 export class RegisterComponent {
 
+   //instanciando a classe de serviço (injeção de dependência)
+   constructor(private usuarioService: UsuarioService) { }
 
   //construindo um formulário
   form = new FormGroup({
@@ -24,22 +28,27 @@ export class RegisterComponent {
     senha : new FormControl('') //campo 'senha'
   });
 
-  //instanciando o HttpClient (injeção de dependência)
-
-  constructor(private http: HttpClient) { }
-
+ 
   //capturar do evento submit
   onSubmit() {
-
-    this.http.post('http://localhost:3000/usuarios', this.form.value)
+    const request : RegisterRequestDto = {
+      //capturando os valores do campo nome
+      name: this.form.get('nome')?.value as string,
+      //capturando os valores do campo email
+      email: this.form.get('email')?.value as string,
+      //capturando os valores do campo senha
+      senha: this.form.get('senha')?.value as string
+    };
+    //chamando o método de registro de usuário
+    this.usuarioService.register(request)
     .subscribe({
-      next: () =>{
-        alert('Usuário cadastrado com sucesso!');
-        this.form.reset();
+      next: (response) => { //caso a requisição seja bem sucedida
+        console.log(response);
+      },
+      error: (error) => {//caso a requisição seja mal sucedida
+        console.log(error);
       }
     })
 
   }
-
-
 }
