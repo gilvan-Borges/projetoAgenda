@@ -13,24 +13,59 @@
                     <label for="nome" class="form-label">Entre com o seu nome:</label>
                     <input type="text" class="form-control" id="nome" placeholder="Digite seu nome"
                         formControlName="nome"/>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('nome')?.hasError('required') && form.get('nome')?.touched">
+                            Por favor, informe o nome do usuário.
+                        </span>
+                        <span *ngIf="form.get('nome')?.hasError('minlength') && form.get('nome')?.touched">
+                            Por favor, informe o nome com pelo menos 8 caracteres.
+                        </span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Entre com o seu email:</label>
                     <input type="email" class="form-control" id="email" placeholder="Digite seu email"
                         formControlName="email"/>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+                            Por favor, informe o email do usuário.
+                        </span>
+                        <span *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+                            Por favor, informe um endereço de email válido.
+                        </span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Entre com a sua senha:</label>
                     <input type="password" class="form-control" id="password" placeholder="Digite sua senha"
                         formControlName="senha"/>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('senha')?.hasError('required') && form.get('senha')?.touched">
+                            Por favor, informe a senha do usuário.
+                        </span>
+                        <span *ngIf="form.get('senha')?.hasError('pattern') && form.get('senha')?.touched">
+                            Por favor, informe a senha com pelo menos 1 letra minúscula, 1 letra maiúscula,
+                            1 número, 1 símbolo e no mínimo 8 caracteres.
+                        </span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="password-confirm" class="form-label">Confirme a sua senha:</label>
                     <input type="password" class="form-control" id="password-confirm" placeholder="Confirme sua senha"
-                        >
+                        formControlName="senhaConfirmacao"/>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('senhaConfirmacao')?.hasError('required') && form.get('senhaConfirmacao')?.touched">
+                            Por favor, confirme a senha do usuário.
+                        </span>
+                        <span *ngIf="form.get('senhaConfirmacao')?.hasError('passwordsMismatch') && form.get('senhaConfirmacao')?.touched">
+                           Senhas não conferem, por favor, informe senhas iguais.
+                        </span>
+                    </div>
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+                        Cadastrar
+                    </button>
                 </div>
                 <div class="d-grid mt-2">
                     <a routerLink="/autenticar-usuario" class="btn btn-secondary">
@@ -41,6 +76,5 @@
         </div>
     </div>
 </div>
-
 
 
