@@ -5,14 +5,18 @@
             <h5 class="text-center">Criação de usuário</h5>
             <hr />
 
+            <!-- exibir a mensagem -->
+            <div *ngIf="msg" class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong>{{msg}}</strong>
+                <button (click)="msg = ''" type="button" class="btn-close" aria-label="Close"></button>
+            </div>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
 
                 <div class="mb-3">
                     <label for="nome" class="form-label">Entre com o seu nome:</label>
                     <input type="text" class="form-control" id="nome" placeholder="Digite seu nome"
-                        formControlName="nome"/>
+                        formControlName="nome" />
                     <div class="text-danger">
                         <span *ngIf="form.get('nome')?.hasError('required') && form.get('nome')?.touched">
                             Por favor, informe o nome do usuário.
@@ -25,7 +29,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">Entre com o seu email:</label>
                     <input type="email" class="form-control" id="email" placeholder="Digite seu email"
-                        formControlName="email"/>
+                        formControlName="email" />
                     <div class="text-danger">
                         <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
                             Por favor, informe o email do usuário.
@@ -38,7 +42,7 @@
                 <div class="mb-3">
                     <label for="password" class="form-label">Entre com a sua senha:</label>
                     <input type="password" class="form-control" id="password" placeholder="Digite sua senha"
-                        formControlName="senha"/>
+                        formControlName="senha" />
                     <div class="text-danger">
                         <span *ngIf="form.get('senha')?.hasError('required') && form.get('senha')?.touched">
                             Por favor, informe a senha do usuário.
@@ -52,13 +56,15 @@
                 <div class="mb-3">
                     <label for="password-confirm" class="form-label">Confirme a sua senha:</label>
                     <input type="password" class="form-control" id="password-confirm" placeholder="Confirme sua senha"
-                        formControlName="senhaConfirmacao"/>
+                        formControlName="senhaConfirmacao" />
                     <div class="text-danger">
-                        <span *ngIf="form.get('senhaConfirmacao')?.hasError('required') && form.get('senhaConfirmacao')?.touched">
+                        <span
+                            *ngIf="form.get('senhaConfirmacao')?.hasError('required') && form.get('senhaConfirmacao')?.touched">
                             Por favor, confirme a senha do usuário.
                         </span>
-                        <span *ngIf="form.get('senhaConfirmacao')?.hasError('passwordsMismatch') && form.get('senhaConfirmacao')?.touched">
-                           Senhas não conferem, por favor, informe senhas iguais.
+                        <span
+                            *ngIf="form.get('senhaConfirmacao')?.hasError('passwordsMismatch') && form.get('senhaConfirmacao')?.touched">
+                            Senhas não conferem, por favor, informe senhas iguais.
                         </span>
                     </div>
                 </div>
@@ -76,5 +82,3 @@
         </div>
     </div>
 </div>
-
-

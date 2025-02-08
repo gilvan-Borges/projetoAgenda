@@ -4,8 +4,10 @@ import { RouterLink } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { RegisterRequestDTO } from '../../../models/register.request.dto';
 import { CommonModule } from '@angular/common';
-import { PasswordValidator } from '../../../validators/password.validators';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+import { delay } from 'rxjs';
+import { PasswordValidator } from '../../../validators/password.validators';
 
 
 @Component({
@@ -24,12 +26,13 @@ export class RegisterComponent {
 
   //atributos
   form: FormGroup; //formulário
-
-
+  msg: string = ''; //mensagem
+ 
   //instanciando a classe de serviço de usuário
   constructor(
     private usuarioService: UsuarioService, //injetando o serviço de usuário
-    private fb: FormBuilder //injetando o form builder
+    private fb: FormBuilder, //injetando o form builder
+    private spinner: NgxSpinnerService //injetando o spinner
   ) {
     this.form = this.fb.group({ //criando o formulário
       nome: new FormControl('', [
@@ -65,15 +68,30 @@ export class RegisterComponent {
     };
 
 
+    //exibindo o spinner
+    this.spinner.show();
+
+
     //chamando o serviço de registro de usuário
     this.usuarioService.register(request)
+      .pipe(delay(3000))
       .subscribe({ //capturando a resposta da requisição
         next: (response) => { //caso a requisição seja bem sucedida
+
+
           console.log(response); //exibindo a resposta no console
+          this.msg = 'Usuário cadastrado com sucesso!';
+          this.form.reset(); //resetando o formulário
+          scrollTo(0, 0); //rolando a página para o topo
         },
         error: (e) => { //caso a requisição falhe
+         
           console.error(e.error); //exibindo o erro no console
+          this.msg = 'Falha ao cadastrar o usuário';
         }
+      })
+      .add(() => {
+        this.spinner.hide(); //escondendo o spinner
       });
   }
 
