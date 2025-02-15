@@ -4,24 +4,32 @@
             <h3 class="card-title text-center mb-4">Projeto Agenda</h3>
             <h5 class="text-center">Autenticação de usuários</h5>
             <hr />
-            <form>
+
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
                 <div class="mb-3">
                     <label for="email" class="form-label">Entre com o seu email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+                    <input formControlName="email" type="email" class="form-control" id="email" placeholder="Digite seu email" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Entre com a sua senha:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+                    <input formControlName="senha" type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Entrar</button>
                 </div>
-                <div class="d-grid  mt-2">
+                <div class="d-grid mt-2">
                     <a routerLink="/criar-usuario" class="btn btn-secondary">
                         Não possui conta? Cadastre-se aqui!
                     </a>
                 </div>
+
+
             </form>
+
+
         </div>
     </div>
 </div>
