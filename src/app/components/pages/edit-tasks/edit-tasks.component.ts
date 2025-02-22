@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-edit-tasks',
   imports: [
     NavbarComponent
   ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  templateUrl: './edit-tasks.component.html',
+  styleUrl: './edit-tasks.component.css'
 })
-export class DashboardComponent {
+export class EditTasksComponent {
 
 }

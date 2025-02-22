@@ -1,0 +1,56 @@
+<!-- Exibir o navbar -->
+<app-navbar />
+
+
+<!-- Conteúdo da página dashboard -->
+<div class="m-4">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h5 class="card-title">Cadastro de Tarefas</h5>
+            <h6 class="card-subtitle text-muted mb-3">Preencha o formulário para criar tarefas em sua agenda.</h6>
+
+
+            <!-- Formulário -->
+            <form>
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome da Tarefa</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Digite o nome da tarefa" required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="data" class="form-label">Data</label>
+                    <input type="date" class="form-control" id="data" required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="categoria" class="form-label">Categoria</label>
+                    <select class="form-select" id="categoria" required>
+                        <option selected disabled>Selecione uma categoria</option>
+                        <option value="Trabalho">Trabalho</option>
+                        <option value="Estudo">Estudo</option>
+                        <option value="Pessoal">Pessoal</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="prioridade" class="form-label">Prioridade</label>
+                    <select class="form-select" id="prioridade" required>
+                        <option selected disabled>Selecione a prioridade</option>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
