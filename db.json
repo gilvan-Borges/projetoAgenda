@@ -18,5 +18,14 @@
       "email": "gilvan1.borges@gmail.com",
       "senha": "@Admin123"
     }
+  ],
+  "tarefas": [
+    {
+      "id": "2062",
+      "nome": "joao gomes",
+      "data": "2025-03-08",
+      "categoria": "Trabalho",
+      "prioridade": "Alta"
+    }
   ]
 }

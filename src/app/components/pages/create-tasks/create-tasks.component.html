@@ -10,47 +10,77 @@
             <h6 class="card-subtitle text-muted mb-3">Preencha o formulário para criar tarefas em sua agenda.</h6>
 
 
+            <!-- exibir a mensagem -->
+            <div *ngIf="msg" class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong>{{msg}}</strong>
+                <button (click)="msg = ''" type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+
+
             <!-- Formulário -->
-            <form>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome da Tarefa</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Digite o nome da tarefa" required>
+                    <input type="text" formControlName="nome" class="form-control" id="nome" placeholder="Digite o nome da tarefa" required>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('nome')?.hasError('required') && form.get('nome')?.touched">
+                            Por favor, informe o nome da tarefa.
+                        </span>
+                    </div>
                 </div>
 
 
                 <div class="mb-3">
                     <label for="data" class="form-label">Data</label>
-                    <input type="date" class="form-control" id="data" required>
+                    <input type="date" formControlName="data" class="form-control" id="data" required>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('data')?.hasError('required') && form.get('data')?.touched">
+                            Por favor, informe a data da tarefa.
+                        </span>
+                    </div>
                 </div>
 
 
                 <div class="mb-3">
                     <label for="categoria" class="form-label">Categoria</label>
-                    <select class="form-select" id="categoria" required>
+                    <select formControlName="categoria" class="form-select" id="categoria" required>
                         <option selected disabled>Selecione uma categoria</option>
                         <option value="Trabalho">Trabalho</option>
                         <option value="Estudo">Estudo</option>
                         <option value="Pessoal">Pessoal</option>
                     </select>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('categoria')?.hasError('required') && form.get('categoria')?.touched">
+                            Por favor, selecione a categoria da tarefa.
+                        </span>
+                    </div>
                 </div>
 
 
                 <div class="mb-3">
                     <label for="prioridade" class="form-label">Prioridade</label>
-                    <select class="form-select" id="prioridade" required>
+                    <select formControlName="prioridade" class="form-select" id="prioridade" required>
                         <option selected disabled>Selecione a prioridade</option>
                         <option value="Baixa">Baixa</option>
                         <option value="Média">Média</option>
                         <option value="Alta">Alta</option>
                     </select>
+                    <div class="text-danger">
+                        <span *ngIf="form.get('prioridade')?.hasError('required') && form.get('prioridade')?.touched">
+                            Por favor, selecione a prioridade da tarefa.
+                        </span>
+                    </div>
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+                    Cadastrar
+                </button>
             </form>
         </div>
     </div>
 </div>
-
 
 
